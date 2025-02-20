@@ -15,8 +15,7 @@ namespace ConsoleCampusAppC_.models
         public Estado Estado { get; set; }
         public bool Riesgo { get; set; }
         public Curso Curso { get; set; }
-        public Dictionary<String, double> Notas { get; set; }
-
+        public List<Modulo> ModulosCursados { get; set; }
         public Camper(long id, string nombre, string apellido, 
             string email, string contraseña, string direccion, 
             string acudiente, int telefono, Estado estado, bool riesgo) : base(id, nombre, apellido, email, contraseña)
