@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,8 @@ namespace ConsoleCampusAppC_.models
         public int Telefono { get; set; }
         public Estado Estado { get; set; }
         public bool Riesgo { get; set; }
+        public Curso Curso { get; set; }
+        public Dictionary<String, double> Notas { get; set; }
 
         public Camper(long id, string nombre, string apellido, 
             string email, string contraseña, string direccion, 
