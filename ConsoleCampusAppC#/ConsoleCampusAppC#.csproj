@@ -78,8 +78,10 @@
     <Compile Include="models\Coordinador.cs" />
     <Compile Include="models\Curso.cs" />
     <Compile Include="models\Estado.cs" />
+    <Compile Include="models\ICoordinador.cs" />
     <Compile Include="models\Modulo.cs" />
     <Compile Include="models\RutaEntrenamiento.cs" />
+    <Compile Include="models\Salon.cs" />
     <Compile Include="models\Trainer.cs" />
     <Compile Include="models\Usuario.cs" />
     <Compile Include="Program.cs" />
