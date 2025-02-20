@@ -13,7 +13,7 @@ namespace ConsoleCampusAppC_.persistence
 {
     class JsonHandler
     {
-        private static readonly string DefaultPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "persistence", "CampusApp.json");
+        private static readonly string DefaultPath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName, "persistence", "CampusApp.json");
 
         public static void WriteToJsonFile<T>(List<T> data)
         {

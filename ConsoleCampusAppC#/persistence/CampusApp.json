@@ -1,3 +1,16 @@
-{
-
-}
+[
+  {
+    "Direccion": "cra20",
+    "Acudiente": "Nelly Ortiz",
+    "Telefono": 147,
+    "Estado": 0,
+    "Riesgo": false,
+    "Curso": null,
+    "ModulosCursados": [],
+    "Nombre": "Adrian",
+    "Apellido": "Ortiz",
+    "Email": "dxniel7328@gmail.com",
+    "Contraseña": "123",
+    "Identificacion": 1005327319
+  }
+]

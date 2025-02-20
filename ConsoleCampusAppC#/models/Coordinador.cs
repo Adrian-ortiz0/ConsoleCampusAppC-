@@ -8,7 +8,7 @@ namespace ConsoleCampusAppC_.models
 {
     class Coordinador : Usuario, ICoordinador
     {
-        public Coordinador(long id, string nombre, string apellido, string email, string contraseña) : base(id, nombre, apellido, email, contraseña)
+        public Coordinador( string nombre, string apellido, string email, string contraseña, int identificacion) : base(nombre, apellido, email, contraseña, identificacion)
         {
         }
 

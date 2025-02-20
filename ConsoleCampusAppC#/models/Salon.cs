@@ -8,12 +8,10 @@ namespace ConsoleCampusAppC_.models
 {
     class Salon
     {
-        public long Id { get; set; }
         public String Nombre { get; set; }
 
-        public Salon(long id, string nombre)
+        public Salon(string nombre)
         {
-            Id = id;
             Nombre = nombre;
         }
     }

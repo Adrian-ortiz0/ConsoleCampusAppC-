@@ -8,7 +8,6 @@ namespace ConsoleCampusAppC_.models
 {
     class Modulo
     {
-        public long Id { get; set; }
         public String Nombre { get; set; }
         public double NotaTeorica { get; set; }
         public double NotaPractica { get; set; }
@@ -16,10 +15,14 @@ namespace ConsoleCampusAppC_.models
         public double NotaExamen {  get; set; }
         public bool Aprobado { get; set; }
 
-        public Modulo(long id, string nombre)
+        public Modulo(string nombre, double notaTeorica, double notaPractica, double notaTrabajos, double notaExamen, bool aprobado)
         {
-            Id = id;
             Nombre = nombre;
+            NotaTeorica = notaTeorica;
+            NotaPractica = notaPractica;
+            NotaTrabajos = notaTrabajos;
+            NotaExamen = notaExamen;
+            Aprobado = aprobado;
         }
     }
 }

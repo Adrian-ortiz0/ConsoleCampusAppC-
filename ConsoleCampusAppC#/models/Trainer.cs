@@ -13,9 +13,9 @@ namespace ConsoleCampusAppC_.models
         public List<RutaEntrenamiento> RutasTrainer { get; set; }
         public String Horario {  get; set; }
 
-        public Trainer(long id, string nombre, string apellido
-            , string email, string contraseña
-            , List<Curso> cursosTrainer, List<RutaEntrenamiento> rutasTrainer, string horario) : base(id, nombre, apellido, email, contraseña)
+        public Trainer( string nombre, string apellido
+            , string email, string contraseña, int identificacion
+            , List<Curso> cursosTrainer, List<RutaEntrenamiento> rutasTrainer, string horario) : base( nombre, apellido, email, contraseña, identificacion)
         {
             this.CursosTrainer = cursosTrainer;
             this.RutasTrainer = rutasTrainer;

@@ -8,19 +8,19 @@ namespace ConsoleCampusAppC_.models
 {
     class Usuario
     {
-        public long Id { get; set; }
         public String Nombre { get; set; }
         public String Apellido { get; set; }
         public String Email { get; set; }
         public String Contraseña { get; set; }
+        public int Identificacion { get; set; }
 
-        public Usuario(long id, string nombre, string apellido, string email, string contraseña)
+        public Usuario(string nombre, string apellido, string email, string contraseña, int identificacion)
         {
-            Id = id;
             Nombre = nombre;
             Apellido = apellido;
             Email = email;
             Contraseña = contraseña;
+            Identificacion = identificacion;
         }
     }
 }
