@@ -1,13 +1,8 @@
-﻿using Newtonsoft.Json;
+﻿using ConsoleCampusAppC_.models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Text.Json;
-using System.Text.Json.Serialization;
-using System.Threading.Tasks;
-using System.Xml;
 
 namespace ConsoleCampusAppC_.persistence
 {
@@ -15,11 +10,11 @@ namespace ConsoleCampusAppC_.persistence
     {
         private static readonly string DefaultPath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName, "persistence", "CampusApp.json");
 
-        public static void WriteToJsonFile<T>(List<T> data)
+        public static void WriteToJsonFile(Dictionary<long, Camper> campers)
         {
             try
             {
-                string jsonData = JsonConvert.SerializeObject(data, Newtonsoft.Json.Formatting.Indented);
+                string jsonData = JsonConvert.SerializeObject(new { campers }, Formatting.Indented);
                 File.WriteAllText(DefaultPath, jsonData);
             }
             catch (Exception ex)
@@ -28,25 +23,26 @@ namespace ConsoleCampusAppC_.persistence
             }
         }
 
-        public static List<T> ReadFromJsonFile<T>()
+        public static Dictionary<long, Camper> ReadFromJsonFile()
         {
             try
             {
                 if (File.Exists(DefaultPath))
                 {
                     string jsonData = File.ReadAllText(DefaultPath);
-                    return JsonConvert.DeserializeObject<List<T>>(jsonData) ?? new List<T>();
+                    var jsonObject = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<long, Camper>>>(jsonData);
+                    return jsonObject != null && jsonObject.ContainsKey("campers") ? jsonObject["campers"] : new Dictionary<long, Camper>();
                 }
                 else
                 {
                     Console.WriteLine("El archivo JSON no existe. Creando uno nuevo...");
-                    return new List<T>();
+                    return new Dictionary<long, Camper>();
                 }
             }
             catch (Exception ex)
             {
                 Console.WriteLine($"Error al leer el archivo JSON: {ex.Message}");
-                return new List<T>();
+                return new Dictionary<long, Camper>();
             }
         }
     }

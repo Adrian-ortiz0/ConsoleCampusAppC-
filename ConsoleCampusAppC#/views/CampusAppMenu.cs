@@ -25,7 +25,12 @@ namespace ConsoleCampusAppC_.views
                 Console.WriteLine("4. Coordinador Login");
                 Console.WriteLine("0. Salir");
 
-                int input = Convert.ToInt32(Console.ReadLine());
+                if (!int.TryParse(Console.ReadLine(), out int input))
+                {
+                    Console.WriteLine("Por favor, ingresa un número válido.");
+                    continue;
+                }
+
                 if (input == 0)
                 {
                     Console.WriteLine("Saliendo...");
@@ -56,39 +61,49 @@ namespace ConsoleCampusAppC_.views
 
         public static void MenuRegistro()
         {
-            Console.WriteLine("Ingresa tu nombre: ");
-            String nombre = Console.ReadLine();
+            Console.Write("\nIngresa tu nombre: ");
+            string nombre = Console.ReadLine()?.Trim();
 
-            Console.WriteLine("Ingresa tu apellido: ");
-            String apellido = Console.ReadLine();
+            Console.Write("Ingresa tu apellido: ");
+            string apellido = Console.ReadLine()?.Trim();
 
-            Console.WriteLine("Ingresa tu email: ");
-            String email = Console.ReadLine();
+            Console.Write("Ingresa tu email: ");
+            string email = Console.ReadLine()?.Trim();
 
-            Console.WriteLine("Ingresa una contraseña: ");
-            String contraseña = Console.ReadLine();
+            Console.Write("Ingresa una contraseña: ");
+            string contraseña = Console.ReadLine();
 
-            Console.WriteLine("Ingresa tu identificacion: ");
-            int identificacion = Convert.ToInt32(Console.ReadLine());
+            int identificacion;
+            while (true)
+            {
+                Console.Write("Ingresa tu identificación (solo números): ");
+                if (int.TryParse(Console.ReadLine(), out identificacion)) break;
+                Console.WriteLine("Identificación inválida, intenta de nuevo.");
+            }
 
-            Console.WriteLine("Ingresa tu direccion de residencia: ");
-            String direccion = Console.ReadLine();
+            Console.Write("Ingresa tu dirección de residencia: ");
+            string direccion = Console.ReadLine()?.Trim();
 
-            Console.WriteLine("Ingresa el nombre de un acudiente o familair: ");
-            String acudiente = Console.ReadLine();
+            Console.Write("Ingresa el nombre de un acudiente o familiar: ");
+            string acudiente = Console.ReadLine()?.Trim();
 
-            Console.WriteLine("Ingresa tu telefono: ");
-            int telefono = Convert.ToInt32(Console.ReadLine());
+            int telefono;
+            while (true)
+            {
+                Console.Write("Ingresa tu teléfono (solo números): ");
+                if (int.TryParse(Console.ReadLine(), out telefono)) break;
+                Console.WriteLine("Teléfono inválido, intenta de nuevo.");
+            }
 
             List<Modulo> modulos = new List<Modulo>();
 
-            Camper camperIncrito = new Camper(nombre, apellido, email, 
-                contraseña, identificacion, direccion, 
+            Camper camperIncrito = new Camper(nombre, apellido, email,
+                contraseña, identificacion, direccion,
                 acudiente, telefono, Estado.INSCRITO, false, null, modulos);
 
             CamperController.CrearCamper(camperIncrito);
-            Console.WriteLine("Camper inscrito exitosamente!");
-            
+            Console.WriteLine("\n¡Camper inscrito exitosamente!\n");
+
         }
     }
 }

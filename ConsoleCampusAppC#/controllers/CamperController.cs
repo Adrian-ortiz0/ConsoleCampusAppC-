@@ -1,56 +1,45 @@
 ﻿using ConsoleCampusAppC_.persistence;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using ConsoleCampusAppC_.models;
 
 namespace ConsoleCampusAppC_.controllers
 {
     class CamperController
     {
-
         public static void CrearCamper(Camper camper)
         {
-            var campers = JsonHandler.ReadFromJsonFile<Camper>();
-            campers.Add(camper);
+            var campers = JsonHandler.ReadFromJsonFile();
+            campers[camper.Identificacion] = camper; 
             JsonHandler.WriteToJsonFile(campers);
         }
 
         public static List<Camper> ListarCampers()
         {
-            return JsonHandler.ReadFromJsonFile<Camper>();
+            return new List<Camper>(JsonHandler.ReadFromJsonFile().Values);
         }
 
         public static Camper GetCamperByIdentificacion(long id)
         {
-            return JsonHandler.ReadFromJsonFile<Camper>().FirstOrDefault(c => c.Identificacion == id);
+            var campers = JsonHandler.ReadFromJsonFile();
+            return campers.ContainsKey(id) ? campers[id] : null;
         }
 
         public static void EliminarCamperPorId(long id)
         {
-            var campers = JsonHandler.ReadFromJsonFile<Camper>();
-            campers = campers.Where(c => c.Identificacion == id).ToList();
-            JsonHandler.WriteToJsonFile(campers);
+            var campers = JsonHandler.ReadFromJsonFile();
+            if (campers.Remove(id))
+            {
+                JsonHandler.WriteToJsonFile(campers);
+            }
         }
 
         public static void EditarCamper(Camper camperActualizado)
         {
-            var campers = JsonHandler.ReadFromJsonFile<Camper>();
-            var camper = campers.FirstOrDefault(c => c.Identificacion == camperActualizado.Identificacion);
-            if(camper != null)
+            var campers = JsonHandler.ReadFromJsonFile();
+            if (campers.ContainsKey(camperActualizado.Identificacion))
             {
-                camper.Nombre = camperActualizado.Nombre;
-                camper.Apellido = camperActualizado.Apellido;
-                camper.Email = camperActualizado.Email;
-                camper.Contraseña = camperActualizado.Contraseña;
-                camper.Direccion = camperActualizado.Direccion;
-                camper.Acudiente = camperActualizado.Acudiente;
-                camper.Telefono = camperActualizado.Telefono;
-                camper.Estado = camperActualizado.Estado;
-                camper.Riesgo = camperActualizado.Riesgo;
-
+                campers[camperActualizado.Identificacion] = camperActualizado;
                 JsonHandler.WriteToJsonFile(campers);
             }
         }
