@@ -31,5 +31,15 @@ namespace ConsoleCampusAppC_.models
             this.Riesgo = riesgo;
             this.ModulosCursados = modulosCursados;
         }
+
+        public static implicit operator Camper(Trainer v)
+        {
+            throw new NotImplementedException();
+        }
+
+        public static implicit operator Camper(Coordinador v)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

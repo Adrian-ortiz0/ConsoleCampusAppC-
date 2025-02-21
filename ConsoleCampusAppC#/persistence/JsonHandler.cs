@@ -1,49 +1,47 @@
-﻿using ConsoleCampusAppC_.models;
-using Newtonsoft.Json;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
 using System.IO;
 
 namespace ConsoleCampusAppC_.persistence
 {
-    class JsonHandler
+    public class JsonHandler
     {
-        private static readonly string DefaultPath = Path.Combine(Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName, "persistence", "CampusApp.json");
+        private static readonly string DefaultPath = Path.Combine(
+            Directory.GetParent(AppDomain.CurrentDomain.BaseDirectory).Parent.Parent.FullName,
+            "persistence", "CampusApp.json");
 
-        public static void WriteToJsonFile(Dictionary<long, Camper> campers)
+        public static T ReadEntityFromJsonFile<T>(string rootName)
         {
-            try
+            if (File.Exists(DefaultPath))
             {
-                string jsonData = JsonConvert.SerializeObject(new { campers }, Formatting.Indented);
-                File.WriteAllText(DefaultPath, jsonData);
+                string jsonData = File.ReadAllText(DefaultPath);
+                var wrapper = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(jsonData);
+                if (wrapper != null && wrapper.ContainsKey(rootName))
+                {
+                    return wrapper[rootName].ToObject<T>();
+                }
             }
-            catch (Exception ex)
-            {
-                Console.WriteLine($"Error al escribir en el archivo JSON: {ex.Message}");
-            }
+            return default(T);
         }
-
-        public static Dictionary<long, Camper> ReadFromJsonFile()
+        public static void WriteEntityToJsonFile<T>(T data, string rootName)
         {
-            try
+            Dictionary<string, JToken> wrapper;
+            if (File.Exists(DefaultPath))
             {
-                if (File.Exists(DefaultPath))
-                {
-                    string jsonData = File.ReadAllText(DefaultPath);
-                    var jsonObject = JsonConvert.DeserializeObject<Dictionary<string, Dictionary<long, Camper>>>(jsonData);
-                    return jsonObject != null && jsonObject.ContainsKey("campers") ? jsonObject["campers"] : new Dictionary<long, Camper>();
-                }
-                else
-                {
-                    Console.WriteLine("El archivo JSON no existe. Creando uno nuevo...");
-                    return new Dictionary<long, Camper>();
-                }
+                string jsonData = File.ReadAllText(DefaultPath);
+                wrapper = JsonConvert.DeserializeObject<Dictionary<string, JToken>>(jsonData)
+                          ?? new Dictionary<string, JToken>();
             }
-            catch (Exception ex)
+            else
             {
-                Console.WriteLine($"Error al leer el archivo JSON: {ex.Message}");
-                return new Dictionary<long, Camper>();
+                wrapper = new Dictionary<string, JToken>();
             }
+
+            wrapper[rootName] = JToken.FromObject(data);
+            string output = JsonConvert.SerializeObject(wrapper, Formatting.Indented);
+            File.WriteAllText(DefaultPath, output);
         }
     }
 }

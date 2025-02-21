@@ -59,6 +59,16 @@ namespace ConsoleCampusAppC_.views
             }
         }
 
+        public static void LoginCoordinador()
+        {
+            Console.WriteLine("Ingresa tu email");
+            String email = Console.ReadLine();
+            Console.WriteLine("Ingresa tu contraseña");
+            String contraseña = Console.ReadLine();
+
+
+        }
+
         public static void MenuRegistro()
         {
             Console.Write("\nIngresa tu nombre: ");

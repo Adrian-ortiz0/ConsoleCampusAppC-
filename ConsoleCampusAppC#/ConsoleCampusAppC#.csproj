@@ -78,6 +78,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="controllers\CamperController.cs" />
+    <Compile Include="controllers\CoordinadorController.cs" />
     <Compile Include="models\Camper.cs" />
     <Compile Include="models\Coordinador.cs" />
     <Compile Include="models\Curso.cs" />
@@ -92,6 +93,7 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="views\CampusAppMenu.cs" />
+    <Compile Include="views\CoordinadorMenu.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />

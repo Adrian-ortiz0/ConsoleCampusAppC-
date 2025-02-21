@@ -1,3 +1,32 @@
 {
-
+  "campers": {
+    "123": {
+      "Direccion": "sdf",
+      "Acudiente": "sdfs",
+      "Telefono": 147,
+      "Estado": 0,
+      "Riesgo": false,
+      "Curso": null,
+      "ModulosCursados": [],
+      "Nombre": "David",
+      "Apellido": "asf",
+      "Email": "dsfd",
+      "Contraseña": "sdfds",
+      "Identificacion": 123
+    },
+    "1005327319": {
+      "Direccion": "Cra20",
+      "Acudiente": "Nelly Ortiz",
+      "Telefono": 147,
+      "Estado": 0,
+      "Riesgo": false,
+      "Curso": null,
+      "ModulosCursados": [],
+      "Nombre": "Adrian",
+      "Apellido": "Ortiz",
+      "Email": "dxniel7328@gmail.com",
+      "Contraseña": "123",
+      "Identificacion": 1005327319
+    }
+  }
 }
